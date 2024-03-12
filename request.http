@@ -1,0 +1,29 @@
+@rootUrl=http://localhost:4004/odata/v4/catalog/
+@books=Books
+
+# @name GetBooks
+GET {{rootUrl}}{{books}}
+
+###
+# @name NewBook
+# @method POST
+POST {{rootUrl}}{{books}}
+Content-Type: application/json
+
+{
+  "ID": {{$randomInt 10 10000}},
+  "title": "{{default}}",
+  "stock": 100
+}
+
+###
+# @name NewBook 2
+# @method POST
+POST {{rootUrl}}{{books}}
+Content-Type: application/json
+
+{
+  "ID": {{$randomInt 10 10000}},
+  "title": "{{name}}",
+  "stock": 100
+}
