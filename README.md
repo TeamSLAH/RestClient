@@ -11,9 +11,7 @@ Ggfs. mit `F1` und `Rest Client: Switch Environment` ein Env. wählen.
 
 Nach dem `cds watch` könnte VSC melden das eine Anwendung auf Port 4004 verfügbar ist und bietet an diese im lokalen Browser zu öffnen.
 
-[[pics/local.png]]
-
-
+!(pics/local.png)
 
 # Doku
 
