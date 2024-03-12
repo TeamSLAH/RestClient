@@ -13,6 +13,8 @@ Nach dem `cds watch` könnte VSC melden das eine Anwendung auf Port 4004 verfüg
 
 ![VSC Meldung](pics/local.png)
 
+Dieser kann geöffnet werden oder die Meldung einfach schließen (ist für den Test mit der request.http Datei nicht notwendig).
+
 # Doku
 
 [Confluence](https://suportis.atlassian.net/wiki/x/BACVBg)
