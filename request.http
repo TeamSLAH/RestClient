@@ -1,12 +1,12 @@
 @rootUrl=http://localhost:4004/odata/v4/catalog/
 @books=Books
 
-# @name GetBooks
+### @name GetBooks
+# Alle Bücher auflisten
 GET {{rootUrl}}{{books}}
 
-###
-# @name NewBook
-# @method POST
+### @name NewBook
+# Neues Buch mit Default-Titel (.vscode/settings.json) anlegen
 POST {{rootUrl}}{{books}}
 Content-Type: application/json
 
@@ -18,12 +18,41 @@ Content-Type: application/json
 
 ###
 # @name NewBook 2
-# @method POST
+# Neues Buch mit name-Titel (.vscode/settings.json) anlegen
+# Je nach gewählter Environment (⌥⌘ E bzw. F1->Rest Client: Switch Environment) wird der entsprechende Name verwendet
 POST {{rootUrl}}{{books}}
 Content-Type: application/json
 
 {
   "ID": {{$randomInt 10 10000}},
   "title": "{{name}}",
+  "stock": 100
+}
+
+### @name Book1
+# Mittels Variabele `book1ID`
+# GetBooks  = Name des Requests von oben
+# response  = Wir wollen den Response ansprechen
+# body      = Wird greifen auf den JSON-Body zu
+# value[0]  = Item 0
+# ID        = Property
+# Dies spiegelt dem Response des GetBooks-Requests wieder
+{{ GetBooks.response.body.value[0].ID }}
+@book1ID = {{ GetBooks.response.body.value[0].ID }}
+GET {{rootUrl}}{{books}}({{book1ID}})
+
+### @name Book2
+# Ohne Variable
+GET {{rootUrl}}{{books}}({{ GetBooks.response.body.value[1].ID }})
+
+### @name WithPrompt
+# Er wird ein Dialog geöffnet, in dem der Buchname eingegeben werden kann
+# @prompt bookname <Gebe Buchname ein>
+POST {{rootUrl}}{{books}}
+Content-Type: application/json
+
+{
+  "ID": {{$randomInt 10 10000}},
+  "title": "{{bookname}}",
   "stock": 100
 }
